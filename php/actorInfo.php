@@ -15,8 +15,9 @@ mysql_select_db("CS143", $db_connection);
 /* Max possible Actor ID */
 $lookup_query = "SELECT id FROM MaxPersonID";
 $lookup_result = mysql_fetch_row(mysql_query($lookup_query, $db_connection));
-$max = $lookup_result[0] - 1;
+$max = $lookup_result[0];
 
+echo "<h4> --Show Actor Info-- </h4>";
 /* If a valid Actor ID was passed in from URL */
 if (isset($_GET['aid']))
 {
@@ -27,6 +28,13 @@ if (isset($_GET['aid']))
 }
 else
 {
+	if ($max == 0) {
+		echo "<p> No actor information avaliable. <br/>";
+		mysql_close($db_connection);
+		echo "<br/></p>";
+		include 'search.php';
+		return;
+	}
 	/* Generate a random valid Actor ID */
 	do {
 		$id = mt_rand(1, $max);
@@ -39,7 +47,6 @@ else
 $nfield = mysql_num_fields($result);
 $rows = mysql_fetch_row($result);
 
-echo "<h4> --Show Actor Info-- </h4>";
 
 echo "Name: $rows[2] $rows[1]<br/>";
 

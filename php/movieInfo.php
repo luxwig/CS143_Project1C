@@ -10,7 +10,7 @@
 <div class="container">
 <!-- PH for the Show Movie Information -->
 
-<h2> --Show Movie Info-- </h2>
+<h4> --Show Movie Info-- </h4>
 
 <?php
 $db_connection = mysql_connect("localhost", "cs143", "");
@@ -19,7 +19,7 @@ mysql_select_db("CS143", $db_connection);
 /* Max possible Movie ID */
 $lookup_query = "SELECT id FROM MaxMovieID";
 $lookup_result = mysql_fetch_row(mysql_query($lookup_query, $db_connection));
-$max = $lookup_result[0] - 1;
+$max = $lookup_result[0];
 
 /* If a valid Movie ID was passed in from URL */
 if (isset($_GET['mid']))
@@ -31,6 +31,12 @@ if (isset($_GET['mid']))
 }
 else
 {
+	if ($max == 0) {
+		echo "<p>No movie information avaliable.</p><br/>";
+		include "search.php";
+		mysql_close($db_connection);
+		return;
+	}
 	/* Generate a random valid Movie ID */
 	do {
 		$id = mt_rand(1, $max);

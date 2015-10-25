@@ -111,7 +111,7 @@
         		$errmsg = mysql_error($db_connection);
         		if (!$id)
 				{
-            	    print "Failed : $errmsg"; return;
+            	    print "Failed : $errmsg"; mysql_close($db_connection); return;
 				}
 				$id = mysql_fetch_row($id); $id = $id[0] + 1;
 			}
@@ -135,6 +135,7 @@
 		if ($identity == 0x3){
 			$result = mysql_query("UPDATE MaxPersonID SET id = id - 1", $db_connection);
 		}
+	mysql_close($db_connection);
 ?>
 </p>
       <p>&nbsp;</p>

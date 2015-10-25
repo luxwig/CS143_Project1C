@@ -10,13 +10,14 @@
 <div class="container">
 
 <h4>Search for actors/movies</h4>
-
 <form action="search.php" method="POST">	
-Search	
+<p>
+Search: <span style="padding-left: 10px"/> 
 		<input type="text" name="name"></input>
+		 <span style="padding-left: 10px"/> 
 		<input type="submit" name = "submit" value="search" style="position: absolute; width: 60px; height: 1px;"/>
+</p>
 </form>
-
 <?php
 $db_connection = mysql_connect("localhost", "cs143", "");
 mysql_select_db("CS143", $db_connection);
@@ -30,7 +31,7 @@ if (isset($_POST["submit"]))
 	}
 	else
 	{
-		echo "<h4> You are searching [ \"$name\"]results... </h4>";
+		echo "<h4> You are searching [ \"$name\" ]results... </h4>";
 
 		$words = preg_split('/\s+/', trim($name));	// Splits words by spaces
 		$length = count($words);
