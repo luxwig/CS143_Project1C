@@ -9,7 +9,7 @@
 <frame src="frame/header.html" name="header" id="header">
 <frameset cols="300,*" framespacing="0" border="0">
   <frame src="frame/slidebar.html" id = "left">
-  <frame src="php/serach.php" name="main" id="main">
+  <frame src="php/search.php" name="main" id="main">
 </frameset>
 <frame src="frame/foot.html" name="footer" id="footer">
 </frameset>
