@@ -18,6 +18,8 @@ $lookup_result = mysql_fetch_row(mysql_query($lookup_query, $db_connection));
 $max = $lookup_result[0];
 
 echo "<h4> --Show Actor Info-- </h4>";
+echo "<p>";
+
 /* If a valid Actor ID was passed in from URL */
 if (isset($_GET['aid']))
 {
@@ -90,7 +92,7 @@ else
 }
 
 mysql_close($db_connection);
-echo "<br/>";
+echo "<br/></p>";
 include 'search.php';
 
 ?>

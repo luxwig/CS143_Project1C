@@ -88,4 +88,4 @@ INSERT INTO MaxPersonID VALUES (0);
 INSERT INTO MaxMovieID VALUES (0);
 
 CREATE VIEW Tca(id, first,last,sex,dob,dod, max) as select * from Actor, MaxPersonID;
-CREATE VIEW Rid(id, first,last,dob,dod, max) as select * from Director, MaxPersonID;
+CREATE VIEW Rid(id, first,last,dob,dod, max) as select * from Director, MaxMovieID;

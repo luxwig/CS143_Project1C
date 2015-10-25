@@ -12,6 +12,7 @@
 
 <h4> --Show Movie Info-- </h4>
 
+<p>
 <?php
 $db_connection = mysql_connect("localhost", "cs143", "");
 mysql_select_db("CS143", $db_connection);
@@ -167,7 +168,8 @@ mysql_close($db_connection);
 
 include 'search.php';
 ?>
-
+</p>
+</br>
 <a href='index.php'>Go Home</a></br>
 </div>
 </body>

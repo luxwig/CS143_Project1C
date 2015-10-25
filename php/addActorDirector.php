@@ -64,6 +64,7 @@
 	if(!$db_connection) {
     	$errmsg = mysql_error($db_connection);
     	print "Connection failed: $errmsg <br>";
+		mysql_close($db_connection);
     	exit(1);
 	}
 	mysql_select_db("CS143", $db_connection);
@@ -78,7 +79,6 @@
 		if ($identity & 0x1)
 		{
 			$id = mysql_query("SELECT * FROM MaxPersonID;", $db_connection);
-        	$numField = mysql_num_fields($id);
         	$errmsg = mysql_error($db_connection);
         	if (!$id)
                 print "Failed : $errmsg";
