@@ -120,7 +120,7 @@ else
 		$name = $row[0];				
 		$role = $row[1];
 		$aid = $row[2];
-		echo "<a href='http://127.0.0.1:1438/~cs143/CS143_project1C/php/actorInfo.php?aid=$aid'> $name</a>"  
+		echo "<a href='actorInfo.php?aid=$aid'> $name</a>"  
 			. " act as $role <br/>";				
 	}
 }
@@ -140,7 +140,7 @@ if ($avg_result[0] == NULL)
 else
 	echo "Average Score: $avg_result[0]/5 (5.0 is best) by $count_result[0] reviews(s). ";
 
-echo "<a href='http://127.0.0.1:1438/~cs143/CS143_project1C/php/addComments.php?mid=$id'>Add your review now!</a> <br/><br/>";
+echo "<a href='addComments.php?mid=$id'>Add your review now!</a> <br/><br/>";
 
 $comment_query = "SELECT * FROM Review WHERE mid=$id";
 $comment_result = mysql_query($comment_query, $db_connection);

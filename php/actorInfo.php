@@ -77,7 +77,7 @@ else
 		$movie = $movie_result[0];
 
 		echo "Act \"$role\" in ";
-		echo "<a href='http://127.0.0.1:1438/~cs143/CS143_project1C/php/movieInfo.php?mid=$mid'>" .
+		echo "<a href='movieInfo.php?mid=$mid'>" .
 			 "$movie</a> <br/>";
 	}
 }

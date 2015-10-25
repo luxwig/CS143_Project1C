@@ -52,7 +52,7 @@ if (isset($_POST["submit"]))
 				{
 					$aid = $actor_row[0];
 					$name = "$actor_row[1] $actor_row[2]";
-					echo "<a href='http://127.0.0.1:1438/~cs143/CS143_project1C/php/actorInfo.php?aid=$aid'>$name</a> <br/>";	
+					echo "<a href='actorInfo.php?aid=$aid'>$name</a> <br/>";	
 				}
 			}
 		}
@@ -71,7 +71,7 @@ if (isset($_POST["submit"]))
 				{
 					$aid = $actor_row[0];
 					$name = "$actor_row[1] $actor_row[2]";
-					echo "<a href='http://127.0.0.1:1438/~cs143/CS143_project1C/php/actorInfo.php?aid=$aid'>$name</a> <br/>";					
+					echo "<a href='actorInfo.php?aid=$aid'>$name</a> <br/>";					
 				}
 			}
 		}
@@ -105,7 +105,7 @@ if (isset($_POST["submit"]))
 				$title = $row[1];
 				$year = $row[2];
 
-				echo "<a href='http://127.0.0.1:1438/~cs143/CS143_project1C/php/movieInfo.php?mid=$mid'>" .
+				echo "<a href='movieInfo.php?mid=$mid'>" .
 				 "$title ($year)</a> <br/>";
 			}
 
