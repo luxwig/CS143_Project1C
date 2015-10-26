@@ -9,7 +9,7 @@
 <div class="container">
 	<h2>Add new actor / director</h2>
     <form action="addActorDirector.php" method="GET">
-      <table width="50%"  cellpadding="0" cellspacing="10">
+      <table width="50%"  cellpadding="0" cellspacing="0">
         <tr>
           <td width="30%" valign="top"><h4>Identity</h4></td>
           <td width="*" valign="top">

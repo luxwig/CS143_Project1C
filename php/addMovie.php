@@ -10,7 +10,7 @@
 <div class="container">
 	<h2>Add new movie</h2>
   <form action="addMovie.php" method="GET">
-      <table width="50%"  cellpadding="0" cellspacing="10">
+      <table width="50%"  cellpadding="0" >
         <tr>
           <td width="30%" valign="top"><h4>Title</h4></td>
           <td width="*" valign="top"><input type="text" name="title">
@@ -117,7 +117,7 @@
 	mysql_close($db_connection);
 	if ($success)
 	{
-		echo "<p><a href = \"addMARelation.php?mid=$id\">Add Actor/Role Relation</a></p>";
+		echo "<p><a href = \"addMARelation.php?mid=$id&movie=$title\">Add Actor/Role Relation</a></p>";
 	}
 ?>
 </p>

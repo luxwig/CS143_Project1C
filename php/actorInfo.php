@@ -64,8 +64,8 @@ for ($i = 3; $i < $nfield; $i++)
 	}
 }
 echo "<br>-- Act in --<br/>";
-$movie_query = "SELECT * FROM MovieActor WHERE aid=$id";
-$movie_result = mysql_query($film_query, $db_connection);
+$film_query = "SELECT * FROM MovieActor WHERE aid=$id";
+$film_result = mysql_query($film_query, $db_connection);
 
 if (mysql_num_rows($film_result) == 0)
 {
@@ -82,7 +82,7 @@ else
 		$role = $row[2];
 
 		$movie_query = "SELECT title FROM Movie WHERE id=$mid";
-		$movie_result = mysql_fetch_row(mysql_query($title_query, $db_connection));
+		$movie_result = mysql_fetch_row(mysql_query($movie_query, $db_connection));
 		$movie = $movie_result[0];
 
 		echo "Act \"$role\" in ";
