@@ -13,25 +13,25 @@
       <table width="50%"  cellpadding="0" >
         <tr>
           <td width="30%" valign="top"><h4>Title</h4></td>
-          <td width="*" valign="top"><input type="text" name="title">
+          <td width="*" valign="top"><input type="text" name="title" value="<?php print $_GET['title']; ?>">
           </td>
         </tr>
         <tr>
         <td width="30%" valign="top"><h4>Company</h4></td>
-        <td valign="top"><input type="text" name="company"></td>
+        <td valign="top"><input type="text" name="company" value="<?php print $_GET['company']; ?>"></td>
         </tr>
         <tr>
         <td width="30%" valign="top"><h4>Year</h4></td>
-        <td  valign="top"><input type="text" name="year"onkeypress='return event.charCode >= 48 && event.charCode <= 57'></td>
+        <td  valign="top"><input type="text" name="year"onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php print $_GET['year']; ?>"></td>
         </tr>
         <tr>
         <td width="30%" valign="top"><h4>MPAA Rating</h4></td>
         <td valign="top"><select name="rating" style="width: 150px">
-					<option value="G">G</option>
-<option value="NC-17">NC-17</option>
-<option value="PG">PG</option>
-<option value="PG-13">PG-13</option>
-<option value="R">R</option>
+					<option value="G" <?php if ($_GET['rating'] == 'G') print 'selected = "selected"'; ?>>G</option>
+<option value="NC-17" <?php if ($_GET['rating'] == 'NC-17') print 'selected = "selected"'; ?>>NC-17</option>
+<option value="PG" <?php if ($_GET['rating'] == 'PG') print 'selected = "selected"'; ?>>PG</option>
+<option value="PG-13" <?php if ($_GET['rating'] == 'PG-13') print 'selected = "selected"'; ?>>PG-13</option>
+<option value="R" <?php if ($_GET['rating'] == 'R') print 'selected = "selected"'; ?>>R</option>
 					</select></td>
         </tr>
         <tr>

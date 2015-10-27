@@ -49,7 +49,7 @@ else
 
 $nfield = mysql_num_fields($result);
 $rows = mysql_fetch_row($result);
-
+$movie_name = $rows[1];
 for ($i = 1; $i < $nfield; $i++)
 {
 	echo ucfirst(mysql_field_name($result, $i)) . ": " 
@@ -147,7 +147,7 @@ if ($avg_result[0] == NULL)
 else
 	echo "Average Score: $avg_result[0]/5 (5.0 is best) by $count_result[0] reviews(s). ";
 
-echo "<a href='addComments.php?mid=$id'>Add your review now!</a> <br/><br/>";
+echo "<a href='addComments.php?mid=$id&movie=$movie_name'>Add your review now!</a> <br/><br/>";
 
 $comment_query = "SELECT * FROM Review WHERE mid=$id";
 $comment_result = mysql_query($comment_query, $db_connection);

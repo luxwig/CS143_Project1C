@@ -12,7 +12,6 @@
 <form action="selAid.php" method="GET">
 <p>Name:&nbsp;<input name="s_name" type="text" /> &nbsp; <input name="submit" type="submit" value="Simple Search" />
 </form>
-<p>&nbsp;</p>
 <?php
 	$db_connection = mysql_connect("localhost", "cs143", "");
 	if(!$db_connection) {
@@ -23,20 +22,22 @@
 	}
 	mysql_select_db("CS143", $db_connection);
 	$m_name = mysql_real_escape_string($_GET["s_name"]);
-	echo "<h3>Result</h3><br/>";
+	echo "<h3>Result</h3>";
 	$query = "SELECT id, first, last, dob FROM Actor";
 	if ($m_name != "") $query .= " WHERE (first LIKE '%$m_name%' OR last LIKE '%$m_name%')";
 	$query.= " ORDER BY last ASC, first ASC;";
 	$result = mysql_query($query, $db_connection);
-	if (!$result) echo "Nothing found...Please try again! <br/>";
+	$errmsg = mysql_error($db_connection);
+	if (!$result) echo "<span style=\"padding-left:20px\">$errmsg <br/>";
 	else {
-		while ($row = mysql_fetch_row($result))
+		if (mysql_num_rows($result) == 0) echo "<span style=\"padding-left:20px\">No search result returned.</br>";
+		else while ($row = mysql_fetch_row($result))
 			{
 				$aid = $row[0];
 				$first = $row[1];
 				$last = $row[2];
 				$dob = $row[3];
-				echo "<a href='javascript:void(0);' onclick='window.opener.document.form1.actor.value=\"$last, $first ($dob)\";window.opener.document.form1.aid.value=\"$aid\";self.close();'>$last, $first ($dob)</a> <br/>";
+				echo "<span style=\"padding-left:20px\"><a href='javascript:void(0);' onclick='window.opener.document.form1.actor.value=\"$last, $first ($dob)\";window.opener.document.form1.aid.value=\"$aid\";self.close();'>$last, $first ($dob)</a></br>";
 			}
 	}
 	mysql_close($db_connection);

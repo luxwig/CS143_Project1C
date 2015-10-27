@@ -44,12 +44,15 @@ if (isset($_POST["submit"]))
 			$actor_query = "SELECT id, first, last FROM Actor WHERE first LIKE 
 							'%$words[0]%' OR last LIKE '%$words[0]%'";
 			$actor_result = mysql_query($actor_query, $db_connection);
-
-			if (!$actor_result)
-				echo "Not found. Please try again. <br/>";
+			if (!$actor_result) {
+				$errmsg = mysql_error($db_connection);
+				echo "Failed: $errmsg <br/>";
+			}
 			else
 			{
-				while ($actor_row = mysql_fetch_row($actor_result))
+				if (mysql_num_rows($actor_result) == 0) 
+					echo "No search result found.<br/>";
+				else while ($actor_row = mysql_fetch_row($actor_result))
 				{
 					$aid = $actor_row[0];
 					$name = "$actor_row[1] $actor_row[2]";
@@ -64,11 +67,15 @@ if (isset($_POST["submit"]))
 							(first LIKE '%$words[1]%' AND last LIKE '%$words[0]%')";
 			$actor_result = mysql_query($actor_query, $db_connection);
 
-			if (!$actor_result)
-				echo "Not found.Please try again! <br/>";
+			if (!$actor_result) {
+				$errmsg = mysql_error($db_connection);
+				echo "Failed: $errmsg <br/>";
+			}
 			else
 			{
-				while ($actor_row = mysql_fetch_row($actor_result))
+				if (mysql_num_rows($actor_result) == 0) 
+					echo "No search result found.<br/>";
+				else while ($actor_row = mysql_fetch_row($actor_result))
 				{
 					$aid = $actor_row[0];
 					$name = "$actor_row[1] $actor_row[2]";
@@ -96,11 +103,15 @@ if (isset($_POST["submit"]))
 		$movie_query = "SELECT id, title, year FROM Movie WHERE $where";
 		$movie_result = mysql_query($movie_query, $db_connection);
 
-		if (!$movie_result)
-				echo "Nothing found...Please try again! <br/>";
+		if (!$movie_result) {
+			$errmsg = mysql_error($db_connection);
+				echo "Failed: $errmsg <br/>";
+		}
 		else
 		{
-			while ($row = mysql_fetch_row($movie_result))
+			if (mysql_num_rows($movie_result) == 0) 
+					echo "No search result found.<br/>";
+			else while ($row = mysql_fetch_row($movie_result))
 			{
 				$mid = $row[0];
 				$title = $row[1];

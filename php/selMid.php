@@ -13,7 +13,6 @@
 <p>Title:&nbsp;
   <input name="s_name" type="text" /> &nbsp; <input name="submit" type="submit" value="Simple Search" />
 </form>
-<p>&nbsp;</p>
 <?php
 	$db_connection = mysql_connect("localhost", "cs143", "");
 	if(!$db_connection) {
@@ -24,20 +23,22 @@
 	}
 	mysql_select_db("CS143", $db_connection);
 	$m_name = mysql_real_escape_string($_GET["s_name"]);
-	echo "<h3>Result</h3><br/>";
+	echo "<h3>Result</h3>";
 	$query = "SELECT id, title, year FROM Movie";
 	if ($m_name != "") $query .= " WHERE title LIKE '%$m_name%'";
 	$query.=" ORDER BY title;";
 	$result = mysql_query($query, $db_connection);
-	//echo $result
-	if (!$result) echo "Nothing found...Please try again! <br/>";
+	$result = mysql_query($query, $db_connection);
+	$errmsg = mysql_error($db_connection);
+	if (!$result) echo "<span style=\"padding-left:20px\">$errmsg <br/>";
 	else {
-		while ($row = mysql_fetch_row($result))
+		if (mysql_num_rows($result) == 0) echo "<span style=\"padding-left:20px\">No search result returned.</br>";
+		else while ($row = mysql_fetch_row($result))
 			{
 				$mid = $row[0];
 				$title = $row[1];
 				$year = $row[2];
-				echo "<a href='javascript:void(0);' onclick='window.opener.document.form1.movie.value=\"$title\";window.opener.document.form1.mid.value=\"$mid\";self.close();'>$title ($year)</a> <br/>";
+				echo "<span style=\"padding-left:20px\"><a href='javascript:void(0);' onclick='window.opener.document.form1.movie.value=\"$title\";window.opener.document.form1.mid.value=\"$mid\";self.close();'>$title ($year)</a><br/>";
 			}
 	}
 	mysql_close($db_connection);
