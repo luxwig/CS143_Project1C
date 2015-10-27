@@ -90,6 +90,7 @@
 													$last."\",\"".
 													$dob."\",\"".
 													$dod."\")";
+				echo $query;
 				$result = mysql_query($query, $db_connection);
 				$errmsg = mysql_error($db_connection);
 				if (!$result)

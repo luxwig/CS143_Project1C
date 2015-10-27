@@ -22,9 +22,14 @@
 	}
 	mysql_select_db("CS143", $db_connection);
 	$m_name = mysql_real_escape_string($_GET["s_name"]);
+	if ($m_name == "") {
+		echo "<p>Type actor's name to start search</p>";
+		mysql_close($db_connection);
+		return;
+	}
 	echo "<h3>Result</h3>";
 	$query = "SELECT id, first, last, dob FROM Actor";
-	if ($m_name != "") $query .= " WHERE (first LIKE '%$m_name%' OR last LIKE '%$m_name%')";
+	$query .= " WHERE (first LIKE '%$m_name%' OR last LIKE '%$m_name%')";
 	$query.= " ORDER BY last ASC, first ASC;";
 	$result = mysql_query($query, $db_connection);
 	$errmsg = mysql_error($db_connection);

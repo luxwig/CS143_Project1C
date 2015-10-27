@@ -23,6 +23,11 @@
 	}
 	mysql_select_db("CS143", $db_connection);
 	$m_name = mysql_real_escape_string($_GET["s_name"]);
+	if ($m_name == "") {
+		echo "<p>Type movie's name to start search</p>";
+		mysql_close($db_connection);
+		return;
+	}
 	echo "<h3>Result</h3>";
 	$query = "SELECT id, title, year FROM Movie";
 	if ($m_name != "") $query .= " WHERE title LIKE '%$m_name%'";
