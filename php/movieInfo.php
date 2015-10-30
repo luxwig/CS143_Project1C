@@ -120,6 +120,7 @@ if (mysql_num_rows($actor_result) == 0)
 }
 else
 {
+	echo "<p style=\"padding-left:30px\">";
 	while ($row = mysql_fetch_row($actor_result))
 	{
 		$name = $row[0];				
@@ -128,9 +129,11 @@ else
 		echo "<a href='actorInfo.php?aid=$aid'> $name</a>"  
 			. " act as $role <br/>";				
 	}
+	echo "</p>";
 }
 
 echo "<h4> --User Review-- </h4>";
+echo "<p style=\"padding-left:30px\">";
 
 $avg_query = "SELECT AVG(rating) FROM Review WHERE mid=$id";
 $avg_result = mysql_fetch_row(mysql_query($avg_query, $db_connection));
@@ -159,8 +162,9 @@ while ($comment_row = mysql_fetch_row($comment_result))
 	echo "<br>In $time, $name said: I rate this movie score $rating point(s), here is my comment.<br/>";
 	echo $comment . "<br/> <br/><br/>";
 }
-
+echo "</p>";
 mysql_close($db_connection);
+echo "<hr>";
 include 'search.php';
 ?>
 </p>

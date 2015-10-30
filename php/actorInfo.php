@@ -8,6 +8,7 @@
 
 <body>
 <div class="container">
+<p>
 <?php
 $db_connection = mysql_connect("localhost", "cs143", "");
 mysql_select_db("CS143", $db_connection);
@@ -63,10 +64,10 @@ for ($i = 3; $i < $nfield; $i++)
 		echo ucfirst(mysql_field_name($result, $i)) . ": " . $rows[$i] . "<br/>";	
 	}
 }
-echo "<br>-- Act in --<br/>";
+echo "<h4>-- Act in --</h4>";
 $film_query = "SELECT * FROM MovieActor WHERE aid=$id";
 $film_result = mysql_query($film_query, $db_connection);
-
+echo "<p style=\"padding-left:30px\">";
 if (mysql_num_rows($film_result) == 0)
 {
 	if ($rows[3] == "Male")
@@ -92,11 +93,12 @@ else
 }
 
 mysql_close($db_connection);
-echo "<br/></p>";
+echo "<br/></p></p>";
+echo "<hr>";
 include 'search.php';
 
 ?>
-
+</p>
 </div>
 </body>
 </html>
