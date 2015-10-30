@@ -25,8 +25,7 @@ $max = $lookup_result[0];
 /* If a valid Movie ID was passed in from URL */
 if (isset($_GET['mid']))
 {
-	$id = $_GET['mid'];
-	//echo "ID: $id <br/>"; 			
+	$id = $_GET['mid'];			
 	$id_query = "SELECT * FROM Movie WHERE id=$id";
 	$result = mysql_query($id_query, $db_connection);
 }
@@ -40,8 +39,7 @@ else
 	}
 	/* Generate a random valid Movie ID */
 	do {
-		$id = mt_rand(1, $max);
-		//echo "ID: " . $id . "<br/>";							
+		$id = mt_rand(1, $max);						
 		$id_query = "SELECT * FROM Movie WHERE id=$id";
 		$result = mysql_query($id_query, $db_connection);
 	} while (mysql_num_rows($result) == 0);
@@ -57,20 +55,20 @@ for ($i = 1; $i < $nfield; $i++)
 }
 
 /* Directors */
-$dir_query = "SELECT CONCAT(D.first, SPACE(1), D.last) Name 
+$director_query = "SELECT CONCAT(D.first, SPACE(1), D.last) Name 
 FROM MovieDirector MD, Director D WHERE MD.mid=$id AND D.id=MD.did";
-$dir_result = mysql_query($dir_query, $db_connection);
+$director_result = mysql_query($director_query, $db_connection);
 
-if (mysql_num_rows($dir_result) == 0)
+if (mysql_num_rows($director_result) == 0)
 {
 	echo "Director: <br/>";
 }
 else
 {
 	echo "Director: ";
-	$num_rows = mysql_num_rows($dir_result);
+	$num_rows = mysql_num_rows($director_result);
 	$i = 1;
-	while($dir_row = mysql_fetch_row($dir_result))
+	while($dir_row = mysql_fetch_row($director_result))
 	{
 		if ($i == $num_rows)
 		{
@@ -112,17 +110,17 @@ else
 }
 echo "<h4> --Actor in this movie-- </h4>";
 
-$cast_query = "SELECT CONCAT(A.first, SPACE(1), A.last) Name, MA.role, A.id
+$actor_query = "SELECT CONCAT(A.first, SPACE(1), A.last) Name, MA.role, A.id
 FROM MovieActor MA, Actor A WHERE MA.mid=$id AND A.id=MA.aid";
-$cast_result = mysql_query($cast_query, $db_connection);
+$actor_result = mysql_query($actor_query, $db_connection);
 
-if (mysql_num_rows($cast_result) == 0)
+if (mysql_num_rows($actor_result) == 0)
 {
-	echo "No cast members found! <br/>"; 
+	echo " No actors found! <br/>"; 
 }
 else
 {
-	while ($row = mysql_fetch_row($cast_result))
+	while ($row = mysql_fetch_row($actor_result))
 	{
 		$name = $row[0];				
 		$role = $row[1];
@@ -139,38 +137,35 @@ $avg_result = mysql_fetch_row(mysql_query($avg_query, $db_connection));
 
 $count_query = "SELECT COUNT(*) FROM Review WHERE mid=$id";
 $count_result = mysql_fetch_row(mysql_query($count_query, $db_connection));
-
 if ($avg_result[0] == NULL)
 {
-	echo "Average Score: Not Available due to 0 reviews. ";
+	echo " Average Score: Not Available due to 0 reviews. ";
 }
 else
-	echo "Average Score: $avg_result[0]/5 (5.0 is best) by $count_result[0] reviews(s). ";
+	echo " Average Score: $avg_result[0]/5 (5.0 is best) by $count_result[0] reviews(s). ";
 
 echo "<a href='addComments.php?mid=$id&movie=$movie_name'>Add your review now!</a> <br/><br/>";
 
 $comment_query = "SELECT * FROM Review WHERE mid=$id";
 $comment_result = mysql_query($comment_query, $db_connection);
 echo "All comments in Details";
-while ($com_row = mysql_fetch_row($comment_result))
+while ($comment_row = mysql_fetch_row($comment_result))
 {
-	$name = $com_row[0];
-	$time = $com_row[1];
-	$rating = $com_row[3];
-	$com = $com_row[4];
+	$name = $comment_row[0];
+	$time = $comment_row[1];
+	$rating = $comment_row[3];
+	$comment = $comment_row[4];
 
-	echo "In $time, $name said: I rate this movie score $rating point(s), here is my comment.<br/>";
-	echo $com . "<br/> <br/>";
+	echo "<br>In $time, $name said: I rate this movie score $rating point(s), here is my comment.<br/>";
+	echo $comment . "<br/> <br/><br/>";
 }
 
-
 mysql_close($db_connection);
-
 include 'search.php';
 ?>
 </p>
 </br>
-<a href='index.php'>Go Home</a></br>
+
 </div>
 </body>
 </html>

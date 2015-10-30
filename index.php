@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CS143 Movie Database</title>
-
 </head>
+
 <frameset rows="90,*,90" framespacing="0" border="0">
 <frame src="frame/header.html" name="header" id="header">
 <frameset cols="300,*" framespacing="0" border="0">

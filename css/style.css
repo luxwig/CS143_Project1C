@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /* CSS Document */
-
+html {
+	background-color: #ffffff;	
+}
 body {
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	background-color: #42413C;
@@ -37,6 +39,7 @@ a:hover, a:active, a:focus {
 .container {
 	background-color: #FFF;
 	margin: 0 auto; 
+	padding-left: 10px;
 }
 
 .header {

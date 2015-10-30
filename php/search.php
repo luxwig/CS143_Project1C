@@ -27,7 +27,7 @@ if (isset($_POST["submit"]))
 	$name = $_POST['name'];
 	if (empty($name))
 	{
-		echo "Please enter a actor/movie's name. <br/>";
+		echo "Please enter an actor/movie's name. <br/>";
 	}
 	else
 	{
@@ -46,7 +46,7 @@ if (isset($_POST["submit"]))
 			$actor_result = mysql_query($actor_query, $db_connection);
 			if (!$actor_result) {
 				$errmsg = mysql_error($db_connection);
-				echo "Failed: $errmsg <br/>";
+				echo "Error: $errmsg <br/>";
 			}
 			else
 			{
@@ -69,7 +69,7 @@ if (isset($_POST["submit"]))
 
 			if (!$actor_result) {
 				$errmsg = mysql_error($db_connection);
-				echo "Failed: $errmsg <br/>";
+				echo "Error: $errmsg <br/>";
 			}
 			else
 			{
@@ -84,12 +84,11 @@ if (isset($_POST["submit"]))
 			}
 		}
 		else
-			echo "No names found! <br/>"; 
+			echo "No result found! <br/>"; 
 
 		/* Movie Query */
 		echo "<b> Searching match records in Movie database... </b> <br/>";
 
-		// [[:<:]] - word boundary marker, so it matches on words in different order
 		$where = "";
 		for ($i = 0; $i < $length; $i++)
 		{
@@ -105,7 +104,7 @@ if (isset($_POST["submit"]))
 
 		if (!$movie_result) {
 			$errmsg = mysql_error($db_connection);
-				echo "Failed: $errmsg <br/>";
+				echo "Error: $errmsg <br/>";
 		}
 		else
 		{

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Untitled Document</title>
+<title>Actor Info</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -50,7 +50,7 @@ $nfield = mysql_num_fields($result);
 $rows = mysql_fetch_row($result);
 
 
-echo "Name: $rows[2] $rows[1]<br/>";
+echo " Name: $rows[2] $rows[1]<br/>";
 
 for ($i = 3; $i < $nfield; $i++)
 {
@@ -97,7 +97,6 @@ include 'search.php';
 
 ?>
 
-<a href='index.php'>Go Home</a></br>
 </div>
 </body>
 </html>
