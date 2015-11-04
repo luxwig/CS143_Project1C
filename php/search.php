@@ -31,16 +31,17 @@ if (isset($_POST["submit"]))
 	}
 	else
 	{
-		echo "<h4> You are searching [ \"$name\" ]results... </h4>";
+		echo "<h4> You are searching [ \"$name\" ] results... </h4>";
 
 		$words = preg_split('/\s+/', trim($name));	// Splits words by spaces
 		$length = count($words);
 
-		$nospace = preg_replace('/\s+/', '', $name);
+		$nospace = mysql_real_escape_string(preg_replace('/\s+/', '', $name));
 		/* Actor Query */
 		echo "<b> Searching match records in Actor database... </b> <br/>";
 		if ($length == 1)
 		{
+			$words[0] = mysql_real_escape_string($words[0]);
 			$actor_query = "SELECT id, first, last FROM Actor WHERE first LIKE 
 							'%$words[0]%' OR last LIKE '%$words[0]%'";
 			$actor_result = mysql_query($actor_query, $db_connection);
@@ -62,9 +63,11 @@ if (isset($_POST["submit"]))
 		}
 		else if ($length == 2)
 		{
+			$words[0] = mysql_real_escape_string($words[0]);
+			$words[1] = mysql_real_escape_string($words[1]);
 			$actor_query = "SELECT id, first, last FROM Actor WHERE (first LIKE 
 							'%$words[0]%' AND last LIKE '%$words[1]%') OR 
-							(first LIKE '%$words[1]%' AND last LIKE '%$words[0]%')";
+							(first LIKE '%$words[1]%' AND last LIKE '%$words[0]%') ORDER BY first";
 			$actor_result = mysql_query($actor_query, $db_connection);
 
 			if (!$actor_result) {
@@ -92,14 +95,16 @@ if (isset($_POST["submit"]))
 		$where = "";
 		for ($i = 0; $i < $length; $i++)
 		{
+			$words[$i] = mysql_real_escape_string($words[$i]);
 			if ($i == 0)
-				$where .= "title REGEXP '[[:<:]]$words[$i][[:>:]]'";
+				//$where .= "title REGEXP '[[:<:]]$words[$i][[:>:]]'";
+				$where .= "title LIKE '%$words[$i]%'";
 			else
-				$where .= "AND title REGEXP '[[:<:]]$words[$i][[:>:]]'";
+				$where .= "AND title LIKE '%$words[$i]%'";
 		}
 
 		$where .= "OR title='$nospace'";
-		$movie_query = "SELECT id, title, year FROM Movie WHERE $where";
+		$movie_query = "SELECT id, title, year FROM Movie WHERE $where ORDER BY title";
 		$movie_result = mysql_query($movie_query, $db_connection);
 
 		if (!$movie_result) {
@@ -123,7 +128,6 @@ if (isset($_POST["submit"]))
 		}
 	}
 }
-
 mysql_close($db_connection);
 ?>
 </div>
