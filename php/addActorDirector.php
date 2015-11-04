@@ -86,8 +86,8 @@
         	else {
 				$id = mysql_fetch_row($id); $id = $id[0] + 1;
 				$query="INSERT INTO Director VALUES (".$id.",\"".
-													$first."\",\"".
 													$last."\",\"".
+													$first."\",\"".
 													$dob."\",\"".
 													$dod."\")";
 				echo $query;
@@ -118,8 +118,8 @@
 				$id = mysql_fetch_row($id); $id = $id[0] + 1;
 			}
 				$query="INSERT INTO Actor VALUES (".$id.",\"".
-													$first."\",\"".
 													$last."\",\"".
+													$first."\",\"".
 													$sex."\",\"".
 													$dob."\",\"".
 													$dod."\")";
