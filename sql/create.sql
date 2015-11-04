@@ -1,5 +1,3 @@
-SOURCE drop.sql
-
 CREATE TABLE Movie (
 	id int,
 	title varchar(100) NOT NULL,  -- The movie must have a title 
@@ -84,8 +82,3 @@ CREATE TRIGGER inc_movie AFTER INSERT ON Movie
 FOR EACH ROW
 UPDATE MaxMovieID SET id = id + 1;
 
-INSERT INTO MaxPersonID VALUES (0);
-INSERT INTO MaxMovieID VALUES (0);
-
-CREATE VIEW Tca(id, first,last,sex,dob,dod, max) as select * from Actor, MaxPersonID;
-CREATE VIEW Rid(id, first,last,dob,dod, max) as select * from Director, MaxMovieID;
